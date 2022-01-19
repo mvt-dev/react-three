@@ -1,17 +1,17 @@
 import React from 'react';
-import Box from './components/Box';
-import './App.css';
+import GroupBox from './components/GroupBox';
+import Shoes from './components/Shoes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          React Three Fiber
-        </p>
-        <Box />
-      </header>
-    </div>
+    <>
+      <section style={{ height: "80%" }}>
+        <Shoes />
+      </section>
+      <section style={{ height: "20%" }}>
+        <GroupBox />
+      </section>
+    </>
   );
 }
 
