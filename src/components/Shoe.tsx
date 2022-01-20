@@ -2,7 +2,7 @@ import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import * as THREE from 'three';
 
-// useGLTF.preload('/shoe.gltf');
+useGLTF.preload('/shoe.gltf');
 
 interface Props {
   color: string;
@@ -32,7 +32,7 @@ type GLTFResult = GLTF & {
   };
 }
 
-const Shoe = ({ color, ...props }: Props) => {
+function Shoe({ color, ...props }: Props) {
   const { nodes, materials } = useGLTF('/shoe.gltf') as GLTFResult;
 
   return (
@@ -51,16 +51,7 @@ const Shoe = ({ color, ...props }: Props) => {
       <mesh castShadow receiveShadow geometry={nodes.shoe_2.geometry} material={materials.caps} material-envMapIntensity={0.8} />
       <mesh castShadow receiveShadow geometry={nodes.shoe_3.geometry} material={materials.inner} material-envMapIntensity={0.8} />
       <mesh castShadow receiveShadow geometry={nodes.shoe_4.geometry} material={materials.sole} material-envMapIntensity={0.8} />
-      <mesh castShadow receiveShadow geometry={nodes.shoe_5.geometry} material={materials.stripes} material-envMapIntensity={0.8}>
-        {/* <meshStandardMaterial
-          color={"red"}
-          aoMap={materials.mesh.aoMap}
-          normalMap={materials.mesh.normalMap}
-          roughnessMap={materials.mesh.roughnessMap}
-          metalnessMap={materials.mesh.metalnessMap}
-          envMapIntensity={0.8}
-        /> */}
-      </mesh>
+      <mesh castShadow receiveShadow geometry={nodes.shoe_5.geometry} material={materials.stripes} material-envMapIntensity={0.8} />
       <mesh castShadow receiveShadow geometry={nodes.shoe_6.geometry} material={materials.band} material-envMapIntensity={0.8} />
       <mesh castShadow receiveShadow geometry={nodes.shoe_7.geometry} material={materials.patch} material-envMapIntensity={0.8} />
     </group>

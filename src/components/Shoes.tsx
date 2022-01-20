@@ -10,15 +10,15 @@ function Shoes() {
 
   return (
     <Provider>
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 150], fov: 35 }}>
+      <Canvas shadows camera={{ fov: 35 }}>
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.5} contactShadow={{ opacity: 0.7, blur: 2 }}>
-            <Shoe color={color} position={[0, 0, 0]} />
-            <Shoe color={color} scale={-1} rotation={[0, 0.5, Math.PI]} position={[0, 0, -1.2]} />
+          <Stage intensity={0.5} contactShadow={{ opacity: 0.7, blur: 2 }}>
+            <Shoe color={color} position={[0, 0, 0]} rotation={[0, -2, 0]} />
+            <Shoe color={color} position={[1, 0, 0]} rotation={[0, -2, Math.PI]} scale={-1} />
           </Stage>
           <BakeShadows />
+          <OrbitControls autoRotate />
         </Suspense>
-        <OrbitControls autoRotate />
       </Canvas>
     </Provider>
   )

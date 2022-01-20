@@ -1,17 +1,17 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import Box from './Box';
+import Sphere from './Sphere';
 import Provider from '../store/Provider';
 
-const GroupBox = () => {
+function GroupBox() {
   return (
-    <Canvas>
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 10, 0], fov: 50 }}>
       <Provider>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Box position={[-4, 0, 0]} rotation={[-0.5, 0, Math.PI]} color="blue" />
-        <Box position={[0, 0, 0]} rotation={[-0.5, 0, Math.PI]} color="red" />
-        <Box position={[4, 0, 0]} rotation={[-0.5, 0, Math.PI]} color="green" />
+        <Sphere position={[-4, 0, 0]} color="blue" />
+        <Sphere position={[0, 0, 0]} color="red" />
+        <Sphere position={[4, 0, 0]} color="green" />
       </Provider>
     </Canvas>
   )
