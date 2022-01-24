@@ -8,16 +8,17 @@ extend({ TextGeometry });
 interface Props {
   text: string;
   color: string;
+  size: number;
   [x: string]: any;
 };
 
-function Text({ text, color, ...props }: Props) {
+function Text({ text, color, size, ...props }: Props) {
   const font = useLoader(FontLoader, '/font.json');
 
   const textOptions = {
     font,
-    size: 0.15,
-    height: 0.04,
+    size,
+    height: 0.03,
   };
 
   return (
