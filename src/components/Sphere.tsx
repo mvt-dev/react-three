@@ -1,16 +1,16 @@
 import * as THREE from 'three';
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeColor } from '../store/actions/shoeActions';
 import { useSpring, animated, config } from '@react-spring/three';
 
 interface Props {
   color: string;
+  currentColor: string;
+  switchColor: (color: string) => void;
   [x: string]: any;
 };
 
-function Sphere({ color, ...props }: Props) {
+function Sphere({ color, currentColor, switchColor, ...props }: Props) {
   const [hovered, hover] = useState(false);
   const ref = useRef<THREE.Mesh>();
 
@@ -18,11 +18,8 @@ function Sphere({ color, ...props }: Props) {
     ref.current!.rotation.y = clock.getElapsedTime();
   });
 
-  const { color: colorState } = useSelector((state: any) => state.shoe);
-  const dispatch = useDispatch();
-
   const { scale } = useSpring({
-    scale: colorState === color ? 1.5 : hovered ? 1.2 : 1,
+    scale: currentColor === color ? 1.5 : hovered ? 1.2 : 1,
     config: config.wobbly,
   });
 
@@ -31,7 +28,7 @@ function Sphere({ color, ...props }: Props) {
       {...props}
       ref={ref}
       scale={scale}
-      onClick={(event) => dispatch(changeColor(color))}
+      onClick={(event) => switchColor(color)}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}
     >

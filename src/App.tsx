@@ -5,10 +5,10 @@ import Shoes from './components/Shoes';
 function App() {
   return (
     <>
-      <section style={{ height: "80%" }}>
+      <section style={{ height: '100%' }}>
         <Shoes />
       </section>
-      <section style={{ height: "20%" }}>
+      <section style={{ width: '100%', height: '20%', position: 'fixed', bottom: 0 }}>
         <GroupBox />
       </section>
     </>
