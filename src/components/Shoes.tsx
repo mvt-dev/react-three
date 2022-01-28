@@ -22,14 +22,15 @@ function Loading() {
   );
 }
 
-function Shoes() {
-  const { color } = useSelector((state: any) => state.shoe);
+function Scene({ color }: { color: string }) {
+  const lightRef = useRef<THREE.DirectionalLight>();
+  // useHelper(lightRef, THREE.DirectionalLightHelper);
 
   return (
-    <Canvas camera={{ fov: 40, position: [0, 3, 5] }}>
+    <>
       <SkyBox />
-      <ambientLight intensity={0.3} />
-      <directionalLight color="white" position={[0, 0, 5]} />
+      <ambientLight intensity={0.2} />
+      <directionalLight position={[-2, 4, 5]} ref={lightRef} />
       <Suspense fallback={<Loading />}>
         <group position={[0, 0.5, 0]}>
           <Shoe color={color} position={[-0.5, 0, 0]} rotation={[0, -2, 0]} />
@@ -40,6 +41,16 @@ function Shoes() {
       </Suspense>
       <OrbitControls autoRotate />
       {/* <gridHelper /> */}
+    </>
+  );
+}
+
+function Shoes() {
+  const { color } = useSelector((state: any) => state.shoe);
+
+  return (
+    <Canvas camera={{ fov: 40, position: [0, 3, 5] }}>
+      <Scene color={color} />
     </Canvas>
   )
 }
